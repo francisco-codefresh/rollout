@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: rolloutapp
 spec:
-  replicas: 2
+  replicas: 4
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -14,13 +14,13 @@ spec:
         app: rolloutapp
     spec:
       containers:
-      - image: salesdemocf/express-microservice:e3bbca2
-        name: rolloutapp
-        ports:
-        - containerPort: 3000
+        - image: salesdemocf/express-microservice:e3bbca2
+          name: rolloutapp
+          ports:
+            - containerPort: 3000
   minReadySeconds: 30
   strategy:
     canary:
       steps:
-      - setWeight: 50
-      - pause: {}
+        - setWeight: 25
+        - pause: {}
