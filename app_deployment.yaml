@@ -14,7 +14,7 @@ spec:
         app: rolloutapp
     spec:
       containers:
-        - image: salesdemocf/express-microservice:f32059b
+        - image: franciscocodefresh/express-microservice:465ca73
           name: rolloutapp
           ports:
             - containerPort: 3000
@@ -22,5 +22,5 @@ spec:
   strategy:
     canary:
       steps:
-        - setWeight: 25
+        - setWeight: 50
         - pause: {}
