@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rolloutapp
+spec:
+  replicas: 4
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: rolloutapp
+  template:
+    metadata:
+      labels:
+        app: rolloutapp
+    spec:
+      containers:
+        - image: franciscocodefresh/express-microservice:d327dfd
+          name: rolloutapp
+          ports:
+            - containerPort: 3000
+  minReadySeconds: 30
+  strategy:
+    canary:
+      steps:
+        - setWeight: 50
+        - pause: {}
